@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Tailwind CSS -->
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+  <!-- Boxicons -->
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" />
+
+  <style>
+    body.light-mode .animated-bg {
+      background-image: url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe');
+    }
+
+    body.dark-mode .animated-bg {
+      background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
+    }
+
+    .animated-bg {
+      background-size: cover;
+      background-position: center;
+      animation: bg-pan 20s infinite alternate ease-in-out;
+    }
+
+    @keyframes bg-pan {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 100% 50%;
+      }
+    }
+
+    .overlay {
+      background-color: rgba(255, 255, 255, 0.85);
+    }
+
+    body.dark-mode .overlay {
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+    }
+
+    body.dark-mode input,
+    body.dark-mode .bg-white {
+      background-color: #1f2937;
+      color: white;
+    }
+
+    body.dark-mode .text-gray-800 {
+      color: white;
+    }
+
+    body.dark-mode .text-gray-500 {
+      color: #cbd5e0;
+    }
+  </style>
+
+  <script>
+    function showToast() {
+      const toast = document.getElementById("toast");
+      toast.classList.remove("hidden");
+      setTimeout(() => toast.classList.add("hidden"), 3000);
+    }
+
+    function toggleTheme() {
+      const body = document.body;
+      const toggleBtn = document.getElementById("themeToggle");
+
+      body.classList.toggle("dark-mode");
+      body.classList.toggle("light-mode");
+
+      if (body.classList.contains("dark-mode")) {
+        toggleBtn.innerText = "Switch to Light Mode";
+      } else {
+        toggleBtn.innerText = "Switch to Dark Mode";
+      }
+    }
+
+    window.onload = () => {
+      // Default to light mode
+      document.body.classList.add("light-mode");
+    };
+  </script>
+</head>
+<body class="text-gray-800 font-sans">
+
+  <!-- Toast -->
+  <div id="toast"
+       class="hidden fixed top-5 right-5 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50 transition-all duration-500">
+    Task Created Successfully!
+  </div>
+
+  <!-- Animated Background Wrapper -->
+  <div class="animated-bg min-h-screen flex flex-col">
+    <div class="overlay flex-grow">
+
+      <!-- Header -->
+      <div class="bg-purple-600 rounded-b-3xl shadow-md text-white px-8 py-6 flex items-center justify-between">
+        <h1 class="text-3xl font-bold tracking-wider">TO-DOS</h1>
+        <div class="top-bar flex gap-3">
+          <a href="/" class="flex items-center gap-2 text-lg hover:underline">
+            <i class="bx bx-home-alt text-xl"></i> Home
+          </a>
+          <button id="themeToggle" onclick="toggleTheme()" class="text-sm bg-white text-purple-600 px-3 py-1 rounded shadow hover:bg-gray-100 transition">
+            Switch to Dark Mode
+          </button>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form method="POST" action="{% url 'todo:home' %}" onsubmit="showToast()"
+            class="max-w-lg mx-auto mt-10 p-6 bg-white shadow rounded-lg">
+        {% csrf_token %}
+        <label for="title" class="block text-purple-600 font-semibold mb-2">Add a New Task</label>
+        <input id="title" name="title" type="text" placeholder="Enter task title" required
+               class="w-full border border-gray-300 rounded px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-purple-400">
+
+        <button type="submit"
+                class="bg-purple-600 hover:bg-purple-500 text-white font-semibold py-2 px-4 rounded transition duration-200">
+          Create Task
+        </button>
+      </form>
+
+      <!-- Task List -->
+      <div class="max-w-6xl mx-auto mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 pb-10">
+        {% for task in tasks %}
+        <div class="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
+          <div>
+            {% if task.complete %}
+            <p class="line-through text-gray-500 text-lg">{{ task }}</p>
+            {% else %}
+            <p class="text-gray-800 text-lg">{{ task }}</p>
+            {% endif %}
+          </div>
+          <div class="space-x-4">
+            <a href="{% url 'todo:update_task' task.id %}" class="text-blue-500 hover:underline">Update</a>
+            <a href="{% url 'todo:delete' task.id %}" class="text-red-500 hover:underline">Delete</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

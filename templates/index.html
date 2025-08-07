@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chatbot</title>
+  <style>
+    :root {
+      --bg-color: #f0f2f5;
+      --bot-bg: #f9fbfe;
+      --font-color: #003366;
+      --header-bg: linear-gradient(135deg, #89f7fe, #66a6ff);
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+
+      /* LIGHT MODE background image */
+      background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    body.dark-mode {
+      /* DARK MODE background image — completely different */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+
+      /* Override light mode colors for dark mode */
+      --bg-color: #121212;
+      --bot-bg: #1e1e1e;
+      --font-color: #cfcfcf;
+      --header-bg: linear-gradient(135deg, #4b6cb7, #182848);
+    }
+
+    .chat-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: var(--header-bg);
+      color: var(--font-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 24px;
+      font-size: 1.25rem;
+      font-weight: bold;
+      border-bottom: 1px solid #ddd;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+
+    .left-controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .header-btn {
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 6px 12px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--font-color);
+      transition: background 0.3s ease;
+    }
+
+    .header-btn:hover {
+      background: #e0f0ff;
+    }
+
+    body.dark-mode .header-btn {
+      background: #333;
+      border-color: #555;
+      color: var(--font-color);
+    }
+
+    body.dark-mode .header-btn:hover {
+      background: #444;
+    }
+
+    .chat-title {
+      text-align: center;
+      flex-grow: 1;
+      user-select: none;
+    }
+
+    .chat-container {
+      background: #ffffff;
+      width: 480px;
+      max-width: 100vw;
+      max-height: calc(100vh - 64px);
+      margin-top: 64px;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.1);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    body.dark-mode .chat-container {
+      background: #2a2a2a;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.7);
+    }
+
+    .chat-messages {
+      flex-grow: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: var(--bot-bg);
+    }
+
+    .message {
+      max-width: 70%;
+      padding: 12px 18px;
+      border-radius: 18px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      word-wrap: break-word;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    .user-message {
+      align-self: flex-end;
+      background: linear-gradient(135deg, #89f7fe, #66a6ff);
+      color: #003366;
+      border-bottom-right-radius: 0;
+    }
+
+    .bot-message {
+      align-self: flex-start;
+      background: linear-gradient(135deg, #fbc2eb, #a18cd1);
+      color: #4a004e;
+      border-bottom-left-radius: 0;
+    }
+
+    body.dark-mode .user-message {
+      background: linear-gradient(135deg, #2575fc, #6a11cb);
+      color: #cfcfcf;
+      box-shadow: 0 2px 8px rgba(20,20,60,0.6);
+    }
+
+    body.dark-mode .bot-message {
+      background: linear-gradient(135deg, #4a004e, #a18cd1);
+      color: #e0c0ff;
+      box-shadow: 0 2px 8px rgba(70,0,90,0.6);
+    }
+
+    .chat-input-area {
+      display: flex;
+      padding: 12px 20px;
+      background: var(--bg-color);
+      border-top: 1px solid #ddd;
+    }
+
+    .chat-input-area input[type="text"] {
+      flex-grow: 1;
+      padding: 10px 15px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 24px;
+      outline: none;
+      background: #fff;
+      transition: border-color 0.3s ease;
+      color: #000;
+    }
+
+    .chat-input-area input[type="text"]:focus {
+      border-color: #2575fc;
+    }
+
+    body.dark-mode .chat-input-area input[type="text"] {
+      background: #444;
+      border-color: #666;
+      color: #ddd;
+    }
+
+    body.dark-mode .chat-input-area input[type="text"]:focus {
+      border-color: #6a11cb;
+    }
+
+    .chat-input-area button {
+      background: linear-gradient(135deg, #2575fc, #6a11cb);
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      margin-left: 10px;
+      font-size: 1rem;
+      border-radius: 24px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .chat-input-area button:hover {
+      background: linear-gradient(135deg, #1d63d3, #5b0eb3);
+    }
+
+    body.dark-mode .chat-input-area button {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+    }
+
+    body.dark-mode .chat-input-area button:hover {
+      background: linear-gradient(135deg, #5b0eb3, #1d63d3);
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-header">
+    <div class="left-controls">
+      <a href="/" class="header-btn">🏠 Home</a>
+      <button onclick="toggleDarkMode()" class="header-btn">🌓 Toggle Mode</button>
+    </div>
+    <div class="chat-title">Chatbot</div>
+  </div>
+
+  <div class="chat-container">
+    <div class="chat-messages" id="chat-messages"></div>
+    <form class="chat-input-area" onsubmit="return sendMessage(event)">
+      <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off" required />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    function sendMessage(event) {
+      event.preventDefault();
+
+      const userInput = document.getElementById('user-input');
+      const chatMessages = document.getElementById('chat-messages');
+
+      const message = userInput.value.trim();
+      if (!message) return;
+
+      // Append user message
+      const userMessageElem = document.createElement('div');
+      userMessageElem.textContent = message;
+      userMessageElem.classList.add('message', 'user-message');
+      chatMessages.appendChild(userMessageElem);
+
+      // Clear input
+      userInput.value = '';
+
+      // Scroll down
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      // Fetch bot response
+      fetch(`/getResponse?userMessage=${encodeURIComponent(message)}`)
+        .then(response => response.text())
+        .then(data => {
+          const botMessageElem = document.createElement('div');
+          botMessageElem.textContent = data;
+          botMessageElem.classList.add('message', 'bot-message');
+          chatMessages.appendChild(botMessageElem);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        })
+        .catch(() => {
+          const errorElem = document.createElement('div');
+          errorElem.textContent = 'Sorry, something went wrong.';
+          errorElem.classList.add('message', 'bot-message');
+          chatMessages.appendChild(errorElem);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        });
+    }
+  </script>
+</body>
+</html>

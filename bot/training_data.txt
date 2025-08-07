@@ -1,0 +1,232 @@
+Hi
+Hi, there!
+What's your name?
+I'm an AI-built ChatBot
+How do I create a website?
+Creating a website involves several steps, including choosing a domain, designing the layout, and coding the pages. There are various online platforms to help you with this.
+What is the meaning of life?
+The meaning of life is a philosophical question with no universally agreed-upon answer. It often depends on personal beliefs and perspectives.
+What is Django?
+Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design.
+What are the main features of Django?
+Django includes an ORM, URL routing, template engine, forms handling, and authentication, among other features.
+Explain Django's ORM (Object-Relational Mapping).
+Django's ORM allows you to interact with your database using Python code, abstracting away the need to write raw SQL queries.
+What is the purpose of Django's template engine?
+Django’s template engine allows you to create dynamic HTML by embedding Python-like code in your HTML templates.
+What is the role of middleware in Django?
+Middleware is a way to process requests globally before they reach the view. Examples include authentication and security middleware.
+Explain Django's URL routing system.
+Django uses a URL routing system that maps URL patterns to view functions, providing a clean way to organize and structure your web application.
+What is a Django model?
+A Django model is a Python class that represents a database table, allowing you to define the structure and behavior of your data.
+How can you secure a Django project?
+Securing a Django project involves using HTTPS, handling user authentication and authorization properly, and applying security best practices.
+What is Django REST framework?
+Django REST framework is a powerful and flexible toolkit for building Web APIs in Django, making it easier to develop RESTful services.
+Explain the concept of Django migrations.
+Django migrations are a way to propagate changes you make to your models (adding a field, deleting a model) into your database schema.
+What is Django middleware and give an example?
+Django middleware is a way to process requests globally before they reach the view. An example is the authentication middleware that checks if a user is logged in.
+How does Django handle forms?
+Django provides a forms handling system that simplifies the process of collecting and validating user input.
+What is Django's role in the Model - View - Controller(MVC) architecture?
+Django follows the Model-View-Template (MVT) pattern, which is a slight variation of the traditional Model-View-Controller (MVC) architecture.
+What is Django's signal framework?
+Django signals allow certain senders to notify a set of receivers when certain actions occur elsewhere in the application.
+Explain Django's request / response cycle.
+In Django, a user's request is processed through a series of middleware components before reaching the view, and the response goes through the same middleware components in reverse order.
+What is Django's authentication system?
+Django provides a built-in authentication system that includes user login, logout, password reset, and user permissions.
+What is the purpose of Django's context processors?
+Context processors allow you to make certain variables available globally to all templates in your Django project.
+How can you cache data in Django?
+Django provides a caching framework that allows you to store and retrieve arbitrary pieces of data with a specified timeout period.
+What is Django's testing framework?
+Django has a built-in testing framework that allows you to write and run tests for your application, ensuring its correctness and reliability.
+How can you handle static files in Django?
+Django provides a static file handling mechanism to manage and serve static files like CSS, JavaScript, and images in your web application.
+What is the estimated amount the Reserve Bank of India (RBI) plans to transfer to the government for FY25?
+₹2 lakh crore
+Why was the Indian Premier League (IPL) temporarily suspended recently?
+Political tensions between India and Pakistan
+When is the Southwest monsoon forecasted to arrive in Kerala this year?
+May 27
+What recent development took place between Hamas and Israel amid ongoing conflict?
+Ceasefire talks
+What was Moody's recent action regarding the U.S. credit rating?
+Downgrade
+Where and when is the Seventy-eighth World Health Assembly scheduled to convene?
+Geneva, May 19-27, 2025
+Where were the 7th Khelo India Youth Games held recently?
+Maharashtra
+How many athletes approximately participated in the recent Khelo India Youth Games?
+10,000
+What is the difference between a Django project and a Django app?
+A Django project is the entire web application, while a Django app is a modular component of the project that performs a specific functionality. A project can contain multiple apps.
+How do you create a new Django app?
+You use the command python manage.py startapp appname to create a new app inside your Django project.
+What is the Django admin interface?
+The Django admin interface is an automatically generated, customizable backend for managing your models and data through a web interface.
+How do you add static files in a Django project?
+You place static files in an app’s static directory or a global static directory, then configure STATIC_URL and STATICFILES_DIRS in settings.py.
+What are Django template tags?
+Template tags are special syntax in Django templates that allow logic, variable display, loops, and conditionals within HTML files.
+What is CSRF protection in Django?
+CSRF (Cross-Site Request Forgery) protection prevents unauthorized commands from being transmitted from a user the web application trusts, by using tokens.
+How can you optimize database queries in Django?
+Use methods like .select_related(), .prefetch_related(), and queryset filters to reduce database hits and improve performance.
+What is the use of Django’s settings.py file?
+It contains all the configuration settings for your Django project, including database setup, middleware, installed apps, templates, and more.
+How do Django signals work?
+Signals allow decoupled applications to get notified when certain actions happen elsewhere in the project, like saving a model or user login.
+What is the difference between get() and filter() in Django QuerySets?
+get() returns a single object matching the query or raises an error if not found; filter() returns a queryset with zero or more results.
+How does Django handle user sessions?
+Django stores session data on the server side and uses a session ID cookie to track users across requests.
+What is the difference between function-based views and class-based views in Django?
+Function-based views are simple Python functions, while class-based views use classes for more reusable and extensible views with built-in behaviors.
+How do you deploy a Django application?
+Typically, you configure a production server like Gunicorn or uWSGI, use a web server like Nginx, set environment variables, and connect your database on a hosting platform.
+What is Django Channels?
+Django Channels extends Django to handle WebSockets and asynchronous protocols for real-time applications like chats or notifications.
+How can you handle file uploads in Django?
+Use FileField or ImageField in your model, and set up media handling in settings.py to manage user-uploaded files.
+What is the difference between null=True and blank=True in Django model fields?
+null=True means the database column can be NULL; blank=True means the field is allowed to be empty in forms.
+How can you restrict access to views in Django?
+Use decorators like @login_required, or mixins such as LoginRequiredMixin for class-based views, to restrict access to authenticated users.
+What is the difference between ForeignKey and ManyToManyField in Django?
+ForeignKey creates a one-to-many relationship, while ManyToManyField creates a many-to-many relationship between models.
+How do you create custom Django management commands?
+By creating a management/commands directory inside an app and adding Python scripts that extend Django's base command class.
+What is the capital of France?
+Paris
+Who wrote the play Romeo and Juliet?
+William Shakespeare
+What is the largest planet in our solar system?
+Jupiter
+How many continents are there on Earth?
+Seven
+What is the boiling point of water?
+100°C or 212°F
+Who invented the telephone?
+Alexander Graham Bell
+What is the chemical symbol for gold?
+Au
+What is the smallest prime number?
+2
+What is the process by which plants make their food?
+Photosynthesis
+Who was the first person to walk on the moon?
+Neil Armstrong
+What is the main language spoken in Brazil?
+Portuguese
+What is the powerhouse of the cell?
+Mitochondrion
+What year did World War II end?
+1945
+What is the freezing point of water?
+0°C or 32°F
+Who painted the Mona Lisa?
+Leonardo da Vinci
+What gas do humans need to breathe?
+Oxygen
+What is the currency of Japan?
+Japanese Yen
+How many bones are there in the adult human body?
+206
+What is the tallest mountain in the world?
+Mount Everest
+Who discovered penicillin?
+Alexander Fleming
+What is the longest river in the world?
+The Nile River
+Which is the largest desert on Earth?
+Antarctic Desert
+What is the largest ocean in the world?
+Pacific Ocean
+Which country has the most natural lakes?
+Canada
+What is the tallest waterfall in the world?
+Angel Falls
+Which continent has the most countries?
+Africa
+What is the smallest country in the world?
+Vatican City
+Which country has the highest population?
+China
+What is the capital city of Australia?
+Canberra
+Which mountain range separates Europe and Asia?
+Ural Mountains
+What is the name of the sea bordered by Jordan to the east and Israel to the west?
+Dead Sea
+Which country is both in Europe and Asia?
+Russia
+What is the flattest continent on Earth?
+Australia
+Which river flows through the Grand Canyon?
+Colorado River
+What is the name of the imaginary line that divides the Earth into the Northern and Southern Hemispheres?
+Equator
+What is the most widely used social media platform in the world?
+Facebook
+Who owns YouTube?
+Google
+What does the acronym "TV" stand for?
+Television
+What is the primary function of a newspaper?
+To report news and current events
+Which company developed Instagram?
+Instagram was developed by Kevin Systrom and Mike Krieger and acquired by Facebook
+What does the term "broadcasting" mean?
+Transmitting audio or video content to a dispersed audience
+What is the difference between print media and digital media?
+Print media is physical like newspapers, digital media is online content
+Which is the largest film industry in the world by number of films produced?
+Bollywood
+What is the role of a journalist?
+To gather, write, and report news
+What is a podcast?
+A digital audio series that people can stream or download
+What does "viral" mean in social media?
+Content that spreads quickly through sharing
+What is the role of the press in a democracy?
+To inform the public and hold power accountable
+Which streaming service produced the series "Stranger Things"?
+Netflix
+What does “fake news” refer to?
+False or misleading information presented as news
+What is media literacy?
+The ability to access, analyze, evaluate, and create media
+What is the most popular sport in the world?
+Soccer (Football)
+How many players are there in a basketball team on the court?
+Five
+Which country has won the most FIFA World Cup titles?
+Brazil
+What is the length of an Olympic swimming pool?
+50 meters
+Who holds the record for the most Olympic gold medals?
+Michael Phelps
+Which sport is known as "America’s pastime"?
+Baseball
+How many sets are there in a standard tennis match for men in Grand Slams?
+Best of five sets
+Which country hosted the 2024 Summer Olympics?
+France
+What is the maximum score in a single frame of bowling?
+30
+In which sport would you perform a slam dunk?
+Basketball
+What color jersey does the leader of the Tour de France wear?
+Yellow
+Which sport is played at Wimbledon?
+Tennis
+What does the term "hat trick" mean in soccer?
+Scoring three goals in a single match
+What is the national sport of Japan?
+Sumo wrestling
+Which country is known for inventing cricket?
+England

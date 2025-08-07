@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Weather App</title>
+    <style>
+        :root {
+            --light-bg: linear-gradient(to right, #6dd5fa, #2980b9);
+            --dark-bg: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.5s ease;
+        }
+
+        body.light-mode {
+            background: var(--light-bg);
+        }
+
+        body.dark-mode {
+            background: var(--dark-bg);
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .top-bar {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .top-bar button, .top-bar a {
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            background-color: #ffffffcc;
+            color: #333;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .top-bar button:hover,
+        .top-bar a:hover {
+            background-color: #eeeeee;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-size: 2.2rem;
+        }
+
+        form input[type="text"] {
+            padding: 12px 15px;
+            border-radius: 25px;
+            border: none;
+            outline: none;
+            width: 70%;
+            font-size: 1rem;
+            margin-right: 10px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        form input[type="text"]:focus {
+            box-shadow: 0 0 8px #6dd5fa;
+        }
+
+        form button {
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: none;
+            background-color: #2980b9;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #1c5980;
+        }
+
+        .weather-result {
+            margin-top: 30px;
+            font-size: 1.1rem;
+            text-align: left;
+        }
+
+        .weather-result p {
+            margin: 8px 0;
+        }
+
+        .weather-result img {
+            display: block;
+            margin: 15px auto 10px;
+            width: 80px;
+            height: 80px;
+        }
+
+        .error {
+            color: #ff6b6b;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <div class="top-bar">
+        <a href="/" class="home-link">🏠 Home</a>
+        <button id="toggleMode">Switch to Dark Mode</button>
+    </div>
+
+    <div class="container">
+        <h1>Weather Forecast</h1>
+        <form method="GET" action=".">
+            <input type="text" name="city" placeholder="Enter city name" required value="{{ request.GET.city|default:'' }}" />
+            <button type="submit">Get Weather</button>
+        </form>
+
+        {% if result %}
+            <div class="weather-result">
+                {% if result.error %}
+                    <p class="error">{{ result.error }}</p>
+                {% else %}
+                    <p><strong>Location:</strong> {{ result.region }}, {{ result.country }}</p>
+                    <p><strong>Latitude:</strong> {{ result.lat }}</p>
+                    <p><strong>Longitude:</strong> {{ result.lon }}</p>
+                    <p><strong>Local Time:</strong> {{ result.local_time }}</p>
+                    <p><strong>Temperature:</strong> {{ result.temp }}</p>
+                    <p><strong>Feels Like:</strong> {{ result.feels_like }}</p>
+                    <p><strong>Min Temp:</strong> {{ result.temp_min }}</p>
+                    <p><strong>Max Temp:</strong> {{ result.temp_max }}</p>
+                    <p><strong>Sky Condition:</strong> {{ result.sky }}</p>
+                    <p><strong>Humidity:</strong> {{ result.humidity }}</p>
+                    <p><strong>Wind Speed:</strong> {{ result.wind_speed }}</p>
+                    <p><strong>Pressure:</strong> {{ result.pressure }}</p>
+                    <p><strong>Visibility:</strong> {{ result.visibility }}</p>
+                    <p><strong>Cloud Cover:</strong> {{ result.clouds }}</p>
+                    <p><strong>Sunrise:</strong> {{ result.sunrise }}</p>
+                    <p><strong>Sunset:</strong> {{ result.sunset }}</p>
+                    {% if result.icon_url %}
+                        <img src="{{ result.icon_url }}" alt="Weather icon" />
+                    {% endif %}
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+
+    <footer>
+        &copy; 2025 Weather App
+    </footer>
+
+    <script>
+        const toggleBtn = document.getElementById('toggleMode');
+        const body = document.body;
+
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+            toggleBtn.textContent = body.classList.contains('dark-mode') ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+        });
+    </script>
+</body>
+</html>

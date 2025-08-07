@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Delete Task</title>
+
+  <!-- Tailwind CSS -->
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+
+  <!-- Boxicons -->
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" />
+
+  <style>
+    .animated-bg {
+      background-image: url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe');
+      background-size: cover;
+      background-position: center;
+      animation: bg-pan 20s infinite alternate ease-in-out;
+    }
+
+    @keyframes bg-pan {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 100% 50%;
+      }
+    }
+
+    .overlay {
+      background-color: rgba(255, 255, 255, 0.85);
+    }
+  </style>
+</head>
+<body class="text-gray-800 font-sans">
+
+  <!-- Animated Background Wrapper -->
+  <div class="animated-bg min-h-screen flex flex-col">
+    <div class="overlay flex-grow">
+
+      <!-- Header -->
+      <div class="bg-purple-600 rounded-b-3xl shadow-md text-white px-8 py-6 flex items-center justify-between">
+        <h1 class="text-3xl font-bold tracking-wider">TO-DOS</h1>
+        <a href="/" class="flex items-center space-x-1 text-xl hover:underline transition">
+          <i class='bx bx-home'></i>
+          <span>Home</span>
+        </a>
+      </div>
+
+      <!-- Confirmation Box -->
+      <div class="max-w-2xl mx-auto mt-12 p-8 bg-white rounded-lg shadow-md">
+        <p class="text-purple-600 text-lg font-bold mb-6">Are you sure you want to DELETE "<span class="italic">{{ item }}</span>"?</p>
+
+        <div class="flex items-center space-x-4">
+          <a href="{% url 'todo:home' %}" 
+             class="bg-purple-600 hover:bg-purple-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded transition duration-200">
+            Cancel
+          </a>
+
+          <form method="POST" action="{% url 'todo:delete' item.id %}">
+            {% csrf_token %}
+            <input type="submit" value="Confirm"
+                   class="bg-red-600 hover:bg-red-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded cursor-pointer transition duration-200" />
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

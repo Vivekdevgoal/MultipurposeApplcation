@@ -1,0 +1,101 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: white;
+	color: black;
+	font-family: "Fira Sans", sans-serif;
+	background-color: white;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* DARK MODE STYLES */
+body.dark-mode {
+	background-color: #121212;
+	color: #e0e0e0;
+}
+
+body.dark-mode nav {
+	background-color: #1f1f1f;
+}
+
+body.dark-mode nav ul li:hover {
+	background-color: #333;
+}
+
+body.dark-mode nav ul li a {
+	color: #e0e0e0;
+}
+
+body.dark-mode nav ul li a:hover {
+	color: #c0ffc0;
+}
+
+body.dark-mode .sideNavigationBar {
+	background-color: #1a1a1a;
+}
+
+body.dark-mode .sideNavigationBar a {
+	color: #ccc;
+}
+
+body.dark-mode .sideNavigationBar a:hover {
+	color: #aaffaa;
+}
+
+body.dark-mode .line .side1 h1 {
+	color: #aaffaa;
+}
+
+body.dark-mode .side1 button {
+	color: #000;
+	background-color: #c0ffc0;
+}
+
+body.dark-mode a {
+	color: #aaffaa;
+}
+
+body.dark-mode .about .boxes .box {
+	background-color: #222;
+	box-shadow: 0 5px 10px rgba(255, 255, 255, 0.12);
+	color: #ddd;
+}
+
+body.dark-mode .contactMenu {
+	background-color: #1f1f1f;
+}
+
+body.dark-mode .contact .content,
+body.dark-mode .rightside1 {
+	color: #ccc;
+}
+
+body.dark-mode button,
+body.dark-mode .button button {
+	background-color: #444;
+	color: #eee;
+	border-color: transparent;
+}
+
+body.dark-mode button:hover,
+body.dark-mode .button button:hover {
+	background-color: #6ca96c;
+	color: white;
+}
+
+body.dark-mode footer {
+	background-color: #1a1a1a;
+	color: #ccc;
+}
+
+body.dark-mode footer .footer span a:hover {
+	text-decoration: underline;
+	color: #6ca96c;
+}
+
+/* Rest of your existing styles below */
+/* ... */
